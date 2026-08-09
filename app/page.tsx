@@ -31,6 +31,12 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-parchment flex flex-col items-center justify-center px-6 text-center">
+      <img
+        src="/images/tutorme-icon.png"
+        alt="TutorMe"
+        className="w-16 h-16 mb-6 rounded-xl"
+      />
+
       <p className="text-signal text-sm font-medium mb-3 tracking-wide uppercase">
         Speak first. Read later.
       </p>
