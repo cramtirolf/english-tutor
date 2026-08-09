@@ -30,11 +30,11 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-parchment flex flex-col items-center justify-center px-6 text-center">
+    <main className="min-h-screen bg-parchment flex flex-col items-center pt-12 px-6 text-center">
       <img
         src="/images/tutorme-icon.png"
         alt="TutorMe"
-        className="w-[192px] h-[192px] mb-6 rounded-xl"
+        className="w-[168px] h-[168px] mb-6 rounded-xl"
       />
 
       <p className="text-signal text-sm font-medium mb-3 tracking-wide uppercase">
