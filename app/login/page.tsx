@@ -31,7 +31,13 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-parchment px-4">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-parchment px-4">
+      <img
+        src="/images/tutorme-icon.png"
+        alt="TutorMe"
+        className="w-14 h-14 mb-6 rounded-xl"
+      />
+
       <div className="w-full max-w-sm">
         <h1 className="font-display text-3xl text-ink mb-1">Welcome back</h1>
         <p className="text-ink/60 mb-8 text-sm">Log in to keep practicing.</p>
