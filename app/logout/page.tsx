@@ -44,12 +44,12 @@ export default function LogoutPage() {
   }, []);
 
   return (
-    <main className="min-h-screen bg-parchment flex flex-col items-center justify-center px-6 text-center">
+    <main className="min-h-screen bg-parchment flex flex-col items-center pt-12 px-6 text-center">
       <a href="/">
         <img
           src="/images/tutorme-icon.png"
           alt="TutorMe"
-          className="w-[240px] h-[240px] mb-6 rounded-xl"
+          className="w-[168px] h-[168px] mb-6 rounded-xl"
         />
       </a>
 
