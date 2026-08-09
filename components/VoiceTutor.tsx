@@ -24,10 +24,15 @@ export default function VoiceTutor({
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null);
   const handsFreeRef = useRef(true);
   const speakingRef = useRef(false);
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     handsFreeRef.current = handsFree;
   }, [handsFree]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+  }, [messages]);
 
   useEffect(() => {
     const SpeechRecognition =
@@ -177,7 +182,7 @@ export default function VoiceTutor({
         )}
       </div>
 
-      <div className="space-y-3 mb-6">
+      <div className="space-y-3 mb-6 max-h-[50vh] overflow-y-auto scroll-smooth">
         {messages.map((m, i) => (
           <div
             key={i}
@@ -190,6 +195,7 @@ export default function VoiceTutor({
             {m.text}
           </div>
         ))}
+        <div ref={messagesEndRef} />
       </div>
 
       <form onSubmit={handleTypedSubmit} className="flex gap-2">
