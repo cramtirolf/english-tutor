@@ -41,9 +41,9 @@ export default async function DashboardPage() {
               Hi, {profile?.full_name || "there"}
             </h1>
           </div>
-          <form action="/api/auth/signout" method="post">
-            <button className="text-sm text-ink/60 underline">Log out</button>
-          </form>
+          <a href="/logout" className="text-sm text-ink/60 underline">
+            Log out
+          </a>
         </header>
 
         <div className="space-y-3">
