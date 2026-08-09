@@ -1,4 +1,34 @@
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { createClient } from "@/lib/supabase-browser";
+
 export default function Home() {
+  const router = useRouter();
+  const supabase = createClient();
+  const [bypassLoading, setBypassLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  async function handleBypassLogin() {
+    setError(null);
+    setBypassLoading(true);
+
+    const { error } = await supabase.auth.signInWithPassword({
+      email: "test@tutorme.com",
+      password: "Tut0rM3T35t",
+    });
+
+    setBypassLoading(false);
+
+    if (error) {
+      setError(error.message);
+      return;
+    }
+
+    router.push("/dashboard");
+  }
+
   return (
     <main className="min-h-screen bg-parchment flex flex-col items-center justify-center px-6 text-center">
       <p className="text-signal text-sm font-medium mb-3 tracking-wide uppercase">
@@ -25,6 +55,25 @@ export default function Home() {
           Log in
         </a>
       </div>
+
+      <div className="flex items-center gap-3 mt-10 w-full max-w-xs">
+        <div className="flex-1 h-px bg-mist" />
+        <span className="text-xs text-ink/40 uppercase tracking-wide">
+          Beta testing
+        </span>
+        <div className="flex-1 h-px bg-mist" />
+      </div>
+
+      <button
+        type="button"
+        onClick={handleBypassLogin}
+        disabled={bypassLoading}
+        className="mt-4 rounded-md border border-signal text-signal px-5 py-2.5 font-medium hover:bg-signal/5 transition disabled:opacity-60"
+      >
+        {bypassLoading ? "Signing in…" : "Let me in"}
+      </button>
+
+      {error && <p className="text-coral text-sm mt-3">{error}</p>}
     </main>
   );
 }
