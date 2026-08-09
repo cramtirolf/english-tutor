@@ -9,11 +9,24 @@ export default async function DashboardPage() {
     redirect("/login");
   }
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name, role")
-    .eq("id", userData.user.id)
-    .single();
+  const metaFullName = (userData.user!.user_metadata?.full_name as string) || "";
+  const metaRole = (userData.user!.user_metadata?.role as string) || "";
+
+  let fullName = metaFullName;
+  let role = metaRole;
+
+  if (!fullName || !role) {
+    const { data: profile } = await supabase
+      .from("profiles")
+      .select("full_name, role")
+      .eq("id", userData.user!.id)
+      .single();
+
+    fullName = fullName || profile?.full_name || "";
+    role = role || profile?.role || "student";
+  }
+
+  const firstName = fullName.split(" ")[0] || "there";
 
   const { data: lessons } = await supabase
     .from("lessons")
@@ -23,7 +36,7 @@ export default async function DashboardPage() {
   const { data: progress } = await supabase
     .from("progress")
     .select("lesson_id, status")
-    .eq("student_id", userData.user.id);
+    .eq("student_id", userData.user!.id);
 
   const progressByLesson = new Map(
     (progress ?? []).map((p) => [p.lesson_id, p.status])
@@ -35,10 +48,10 @@ export default async function DashboardPage() {
         <header className="mb-8 flex items-center justify-between">
           <div>
             <p className="text-ink/50 text-sm">
-              {profile?.role === "teacher" ? "Teacher dashboard" : "Your lessons"}
+              {role === "teacher" ? "Teacher dashboard" : "Your lessons"}
             </p>
             <h1 className="font-display text-3xl text-ink">
-              Hi, {profile?.full_name || "there"}
+              Hi, {firstName}!
             </h1>
           </div>
           <a href="/logout" className="text-sm text-ink/60 underline">
