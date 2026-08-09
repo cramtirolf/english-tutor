@@ -32,11 +32,13 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-parchment px-4">
-      <img
-        src="/images/tutorme-icon.png"
-        alt="TutorMe"
-        className="w-14 h-14 mb-6 rounded-xl"
-      />
+      <a href="/">
+        <img
+          src="/images/tutorme-icon.png"
+          alt="TutorMe"
+          className="w-[168px] h-[168px] mb-6 rounded-xl"
+        />
+      </a>
 
       <div className="w-full max-w-sm">
         <h1 className="font-display text-3xl text-ink mb-1">Welcome back</h1>
