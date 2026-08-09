@@ -12,7 +12,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
-  const [bypassLoading, setBypassLoading] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -22,25 +21,6 @@ export default function LoginPage() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
 
     setLoading(false);
-
-    if (error) {
-      setError(error.message);
-      return;
-    }
-
-    router.push("/dashboard");
-  }
-
-  async function handleBypassLogin() {
-    setError(null);
-    setBypassLoading(true);
-
-    const { error } = await supabase.auth.signInWithPassword({
-      email: "test@tutorme.com",
-      password: "Tut0rM3T35t",
-    });
-
-    setBypassLoading(false);
 
     if (error) {
       setError(error.message);
@@ -89,23 +69,6 @@ export default function LoginPage() {
             {loading ? "Logging in…" : "Log in"}
           </button>
         </form>
-
-        <div className="flex items-center gap-3 my-6">
-          <div className="flex-1 h-px bg-mist" />
-          <span className="text-xs text-ink/40 uppercase tracking-wide">
-            Beta testing
-          </span>
-          <div className="flex-1 h-px bg-mist" />
-        </div>
-
-        <button
-          type="button"
-          onClick={handleBypassLogin}
-          disabled={bypassLoading}
-          className="w-full rounded-md border border-signal text-signal py-2.5 font-medium hover:bg-signal/5 transition disabled:opacity-60"
-        >
-          {bypassLoading ? "Signing in…" : "Let me in"}
-        </button>
 
         <p className="text-sm text-ink/60 mt-6">
           New here?{" "}
