@@ -39,7 +39,15 @@ export default function SignupPage() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-parchment px-4">
+    <main className="min-h-screen flex flex-col items-center pt-12 bg-parchment px-4">
+      <a href="/">
+        <img
+          src="/images/tutorme-icon.png"
+          alt="TutorMe"
+          className="w-[168px] h-[168px] mb-6 rounded-xl"
+        />
+      </a>
+
       <div className="w-full max-w-sm">
         <h1 className="font-display text-3xl text-ink mb-1">Create your account</h1>
         <p className="text-ink/60 mb-8 text-sm">
