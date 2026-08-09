@@ -31,7 +31,7 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-parchment px-4">
+    <main className="min-h-screen flex flex-col items-center pt-12 bg-parchment px-4">
       <a href="/">
         <img
           src="/images/tutorme-icon.png"
