@@ -34,7 +34,7 @@ export default function Home() {
       <img
         src="/images/tutorme-icon.png"
         alt="TutorMe"
-        className="w-16 h-16 mb-6 rounded-xl"
+        className="w-[192px] h-[192px] mb-6 rounded-xl"
       />
 
       <p className="text-signal text-sm font-medium mb-3 tracking-wide uppercase">
